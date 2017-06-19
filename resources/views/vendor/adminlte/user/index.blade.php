@@ -36,7 +36,6 @@
                             <th>City</th>
                             <th>State</th>
                             <th>Email Address</th>
-                            <th>View</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -51,12 +50,15 @@
                                 <td>{{ $guide->city  }}</td>
                                 <td>{{ $guide->state  }}</td>
                                 <td>{{ $guide->email_address  }}</td>
-                                <td><a href="{{ url('my_audio_pet/preview.php?entry_id='.$guide->id)  }}">View Certificate </a></td>
-
-                                <td> 
+                               <td>
+                                <a href="{{ url('my_audio_pet/preview.php?entry_id='.$guide->id)  }}"
+                                      
+                                       class="btn btn-sm btn- btn-primary btn-view" title="View Certificate">
+                                        <i class="fa fa-eye"></i>
+                                    </a> 
                                 <a href="javascript:void(0);"
                                        data-form="{{ 'deleteUser' . $guide->id }}"
-                                       class="btn btn-sm btn- btn-danger btn-delete">
+                                       class="btn btn-sm btn- btn-danger btn-delete" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                     <form id="deleteUser{{ $guide->id }}"

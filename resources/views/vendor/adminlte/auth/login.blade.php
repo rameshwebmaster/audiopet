@@ -12,6 +12,17 @@
                 <a href="{{ url('/home') }}"><b>Audio</b>Pets</a>
             </div><!-- /.login-logo -->
 
+            @if(session('success'))
+                    <div class="alert alert-success alert-dismissable">
+                    {{ session('success') }}
+                    </div>
+            @endif
+            @if(session('error'))
+                    <div class="alert alert-danger alert-dismissable">
+                    {{ session('error') }}
+                    </div>
+            @endif
+
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -32,8 +43,14 @@
        <form method="post" action="{{url('login-form')}}">
        {{csrf_field()}}
         <div id="result" class="alert alert-success text-center" style="display: none;"> Logged in! <i class="fa fa-refresh fa-spin"></i> Entering...</div> <div class="form-group has-feedback">
-        <input placeholder="Email" name="email" value="" autofocus="autofocus" class="form-control" type="email"> <span class="glyphicon form-control-feedback glyphicon-envelope"></span> <!----></div> <div class="form-group has-feedback">
-        <input placeholder="Password" name="password" class="form-control" type="password"> <span class="glyphicon glyphicon-lock form-control-feedback"></span> <!----></div> <div class="row"><div class="col-xs-8"><div class="checkbox icheck"><label><div class="icheckbox_square-blue" style="position: relative;"><input name="remember" style="display: block; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Remember Me
+        <input placeholder="Username" name="username" value="" autofocus="autofocus" class="form-control" type="username"><span class="glyphicon glyphicon-user form-control-feedback"></span> 
+        <!----></div>
+        <div class="form-group has-feedback">
+        <input placeholder="Password" name="password" class="form-control" type="password"> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+         <!----></div> 
+         <div class="row"><div class="col-xs-8">
+         <div class="checkbox icheck"><label>
+         <div class="icheckbox_square-blue" style="position: relative;"><input name="remember" style="display: block; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Remember Me
     </label></div></div> <div class="col-xs-4"><button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button></div></div></form>
 
        <!--      -->

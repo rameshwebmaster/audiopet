@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 /**
  * Class RegisterController
@@ -76,16 +77,32 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        $fields = [
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
-        ];
-        if (config('auth.providers.users.field','email') === 'username' && isset($data['username'])) {
-            $fields['username'] = $data['username'];
+    protected function create(Request $request)
+    {   
+        $v = Validator::make($request->all(), [
+            'name'     => 'required|max:255',
+            'username' => 'required|max:255|unique:users',
+            // 'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed'
+            
+        ]);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
         }
-        return User::create($fields);
+
+        $fields = [
+            'name'     => $request->name,
+            'username'    => $request->username,
+            'password' => bcrypt($request->password),
+        ];
+
+        // if (config('auth.providers.users.field','email') === 'username' && isset($data['username'])) {
+        //     $fields['username'] = $data['username'];
+        // }
+        User::create($fields);
+
+        return redirect()->route('login')->with('success','User registered successfully..!!'); 
     }
 }

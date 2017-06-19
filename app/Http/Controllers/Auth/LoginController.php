@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -71,11 +72,22 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     { 
-         
-        if(\Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+       
+
+       $v = Validator::make($request->all(), [
+        'username' => 'required|max:255',
+        'password' => 'required',
+        ]);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }  
+
+        if(\Auth::attempt(['username'=>$request->username,'password'=>$request->password])){
             return redirect('home');
         }
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Invalid Username/Password');
     }
 
     /**
@@ -95,7 +107,8 @@ class LoginController extends Controller
     {
      //   dd(11);
         \Auth::logout();
-        return redirect('/');
+         \Session::flush();
+        return redirect('/login');
     }
 
 

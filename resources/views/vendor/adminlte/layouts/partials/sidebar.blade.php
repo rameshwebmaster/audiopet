@@ -24,9 +24,9 @@
             <li class="header">MAIN NAVIGATION</li>
             <!-- Optionally, you can add icons to the links -->
             <li {!! ((Request::is('home')) ? 'class="active"' : '') !!}>
-            <a href="{{ url('home') }}"><i class='fa fa-dashboard'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <a href="{{ url('home') }}"><i class='fa fa-dashboard'></i> <span><b>{{ trans('adminlte_lang::message.home') }}</b></span></a></li>
             
-            <li {!! ((Request::is('admin/user')) ? 'class="active"' : '') !!} ><a href="{{ url('admin/user') }}"><i class='fa fa-laptop'></i> <span>User List</span></a></li>
+            <li {!! ((Request::is('admin/user')) ? 'class="active"' : '') !!} ><a href="{{ url('admin/user') }}"><i class='fa fa-laptop'></i> <span><b>User List</b></span></a></li>
           
         </ul><!-- /.sidebar-menu -->
     </section>

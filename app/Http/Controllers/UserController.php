@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $guides = User_list::orderBy('created_at', 'desc')->paginate(5);
+        $guides = User_list::orderBy('created_at', 'desc')->paginate(10);
      
         return view('vendor.adminlte.user.index', compact('guides'));
     }

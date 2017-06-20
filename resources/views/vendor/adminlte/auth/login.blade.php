@@ -9,7 +9,7 @@
     <div id="app" v-cloak>
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ url('/home') }}"><b>Audio</b>Pets</a>
+                <a href="{{ url('/home') }}"><b>Audio</b>Pet</a>
             </div><!-- /.login-logo -->
 
             @if(session('success'))

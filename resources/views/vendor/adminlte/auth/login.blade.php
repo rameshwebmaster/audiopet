@@ -54,7 +54,7 @@
     </label></div></div> <div class="col-xs-4"><button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button></div></div></form>
 
        <!--      -->
-        <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
+       <!--  <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a> -->
 
     </div>
 
